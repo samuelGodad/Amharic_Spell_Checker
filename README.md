@@ -38,7 +38,7 @@ This simple amharic spell-checking solution designed specifically for the Amhari
 - pip
 - Git
 ## 📁 Project Structure
-
+```
 ├── Amharic-spell-checker/
   ├── backend/
   │ ├── src/
@@ -82,3 +82,4 @@ This simple amharic spell-checking solution designed specifically for the Amhari
   ├── index.html
   ├── package.json
   └── vite.config.js
+```
