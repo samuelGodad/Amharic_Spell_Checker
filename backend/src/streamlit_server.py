@@ -1,16 +1,23 @@
 import streamlit as st
 import time
+import os
+from pathlib import Path
+from spell_checker import SpellChecker
+from spell_checker_pos import SpellCheckerWithPOS
+from dictionary import Dictionary
+from ngram import NgramModel
 
-from backend.src.spell_checker import SpellChecker
-from backend.src.spell_checker_pos import SpellCheckerWithPOS
-from backend.src.dictionary import Dictionary
-from backend.src.ngram import NgramModel
-
+current_dir = Path(__file__).parent
 def load_models():
-    dictionary_path = "data/amharic_dictionary_v1.txt"
-    bigram_model_path = "models/bigram_model.pkl"
-    trigram_model_path = "models/trigram_model.pkl"
-    pos = "models/am_pos_model.pt"
+    dictionary_path = os.path.join(current_dir.parent, "data", "amharic_dictionary_v1.txt")
+    bigram_model_path = os.path.join(current_dir.parent, "models", "bigram_model.pkl")
+    trigram_model_path = os.path.join(current_dir.parent, "models", "trigram_model.pkl")
+    pos = os.path.join(current_dir.parent, "models", "am_pos_model.pt")
+
+    # dictionary_path = "data/amharic_dictionary_v1.txt"
+    # bigram_model_path = "models/bigram_model.pkl"
+    # trigram_model_path = "models/trigram_model.pkl"
+    # pos = "models/am_pos_model.pt"
 
     st.write("Loading models...")
     t1 = time.time()

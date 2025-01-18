@@ -1,15 +1,25 @@
 from fastapi import FastAPI, HTTPException, Query
 import time
+import os
+from pathlib import Path
+from spell_checker import SpellChecker
+from spell_checker_pos import SpellCheckerWithPOS
+from dictionary import Dictionary
+from ngram import NgramModel
 
-from backend.src.spell_checker import SpellChecker
-from backend.src.spell_checker_pos import SpellCheckerWithPOS
-from backend.src.dictionary import Dictionary
-from backend.src.ngram import NgramModel
-
-dictionary_path = "data/amharic_dictionary_v1.txt"
-bigram_model_path = "models/bigram_model.pkl"
-trigram_model_path = "models/trigram_model.pkl"
-pos = "models/am_pos_model.pt"
+current_dir = Path(__file__).parent
+dictionary_path = os.path.join(current_dir.parent, "data", "amharic_dictionary_v1.txt")
+bigram_model_path = os.path.join(current_dir.parent, "models", "bigram_model.pkl")
+trigram_model_path = os.path.join(current_dir.parent, "models", "trigram_model.pkl")
+pos = os.path.join(current_dir.parent, "models", "am_pos_model.pt")
+print("this is the path to the dictionary: ", dictionary_path)
+print("this is the path to the bigram model: ", bigram_model_path)
+print("this is the path to the trigram model: ", trigram_model_path)
+print("this is the path to the pos model: ", pos)
+# dictionary_path = "data/amharic_dictionary_v1.txt"
+# bigram_model_path = "models/bigram_model.pkl"
+# trigram_model_path = "models/trigram_model.pkl"
+# pos = "models/am_pos_model.pt"
 
 print("Loading models...")
 t1 = time.time()

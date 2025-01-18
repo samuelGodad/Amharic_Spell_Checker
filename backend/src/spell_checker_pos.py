@@ -1,9 +1,16 @@
-from backend.src.spell_checker import SpellChecker
+from spell_checker import SpellChecker
 from flair.models import SequenceTagger
 from flair.data import Sentence
+import os
+from pathlib import Path
 
-models_path = "models/"
-pos_model_path = models_path + 'am_pos_model.pt'
+# models_path = "models/"
+# pos_model_path = models_path + 'am_pos_model.pt'
+current_dir = Path(__file__).parent
+models_path = os.path.normpath(os.path.join(current_dir.parent, "models"))
+pos_model_path = os.path.normpath(os.path.join(models_path, "am_pos_model.pt"))
+print("this is the path to the pos model: ", pos_model_path)
+print("this is the path to the models: ", models_path)
 
 class SpellCheckerWithPOS(SpellChecker):
     def __init__(self, dictionary_model, ngram_model, pos_model_path=pos_model_path):

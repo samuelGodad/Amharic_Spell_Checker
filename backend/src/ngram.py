@@ -1,5 +1,5 @@
-from backend.src.tokenizer import AmharicSegmenter
-from backend.src.preprocessing import AmharicTextProcessor
+from tokenizer import AmharicSegmenter
+from preprocessing import AmharicTextProcessor
 from nltk.util import ngrams
 from collections import defaultdict
 import pickle
@@ -26,12 +26,16 @@ class NgramModel:
         return ngram_count / total_count
 
     def save(self, path):
+        print("the path before creation is ", os.path.dirname(path))
         if not path.endswith('.pkl'):
             path += 'model.pkl'
         # check: if path does not exist create one
         if not os.path.exists(os.path.dirname(path)):
+            print("the path before creation is ", os.path.dirname(path))
             os.makedirs(os.path.dirname(path))
+            print("the path after creation is ", os.path.dirname(path))
         with open(path, 'wb') as f:
+            print("the path to be opened is  ", os.path.dirname(path))
             pickle.dump(self, f)
     
     @classmethod
