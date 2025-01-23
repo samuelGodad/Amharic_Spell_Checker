@@ -22,9 +22,9 @@ npm-debug.log*
 *.tmp
 *.temp
 .cache/
-.devcontainer/
-docker-compose.yml
-Dockerfile
+backend/.devcontainer/
+backend/docker-compose.yml
+backend/Dockerfile
 
 # Build directories
 dist/
