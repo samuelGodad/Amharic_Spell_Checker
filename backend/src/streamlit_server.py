@@ -13,17 +13,10 @@ def load_models():
     bigram_model_path = os.path.join(current_dir.parent, "models", "bigram_model.pkl")
     trigram_model_path = os.path.join(current_dir.parent, "models", "trigram_model.pkl")
     pos = os.path.join(current_dir.parent, "models", "am_pos_model.pt")
-
-    # dictionary_path = "data/amharic_dictionary_v1.txt"
-    # bigram_model_path = "models/bigram_model.pkl"
-    # trigram_model_path = "models/trigram_model.pkl"
-    # pos = "models/am_pos_model.pt"
-
     st.write("Loading models...")
     t1 = time.time()
     dictionary_model = Dictionary(dictionary_path)
     ngram_model = NgramModel.load(bigram_model_path)
-
     spell_checker = SpellChecker(dictionary_model, ngram_model)
     spell_checker_pos = SpellCheckerWithPOS(dictionary_model, ngram_model, pos)
     st.write(f"Models loaded successfully in {round(time.time() - t1, 3)} seconds")

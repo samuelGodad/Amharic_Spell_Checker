@@ -51,16 +51,28 @@ class SpellCheckerWithPOS(SpellChecker):
 
                 if not self._check_spelling(word):
                     suggestions = self._suggest_corrections(word)
-
-                    original_index = text.find(word)
-                    adjacent_words = (
-                        words[i - 1] if i > 0 else None, words[i + 1] if i < len(words) - 1 else None)
-
+                    start_index =text.find(word)
+                    if start_index != -1:
+                        adjacent_words =(
+                        words[i - 1] if i > 0 else None,
+                        words[i + 1] if i < len(words) - 1 else None
+                        )
+                    
                     result["errors"].append({
                         'word': word,
                         'suggestions': suggestions,
-                        'index': [original_index, original_index + len(word)],
+                        'index': [start_index, start_index + len(word)],
                         'adjacent_words': adjacent_words,
                     })
+                    # original_index = text.find(word)
+                    # adjacent_words = (
+                    #     words[i - 1] if i > 0 else None, words[i + 1] if i < len(words) - 1 else None)
 
-        return self._rank_suggestions(result)
+                    # result["errors"].append({
+                    #     'word': word,
+                    #     'suggestions': suggestions,
+                    #     'index': [original_index, original_index + len(word)],
+                    #     'adjacent_words': adjacent_words,
+                    # })
+
+        return result
