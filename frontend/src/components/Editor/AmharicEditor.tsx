@@ -122,13 +122,13 @@ const AmharicEditor = () => {
 
           if (range) {
             setContextMenu({
-              mouseX: event.clientX,
-              mouseY: event.clientY,
+              mouseX: event.clientX+30,
+              mouseY: event.clientY, // Add offset to avoid covering the word
               error: errors.find((e) => e.word === range.word),
             });
             console.log("Context menu state set:", {
               mouseX: event.clientX,
-              mouseY: event.clientY,
+              mouseY: event.clientY + 10,
               error: errors.find((e) => e.word === range.word),
             });
           } else {
