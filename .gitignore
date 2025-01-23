@@ -22,6 +22,9 @@ npm-debug.log*
 *.tmp
 *.temp
 .cache/
+.devcontainer/
+docker-compose.yml
+Dockerfile
 
 # Build directories
 dist/
@@ -47,3 +50,5 @@ htmlcov/
 
 # Local development
 *.local
+# remove the streamlit_server.py file 
+backend/src/streamlit_server.py

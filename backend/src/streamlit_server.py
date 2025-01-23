@@ -34,12 +34,11 @@ else:
     spell_checker_pos = st.session_state.spell_checker_pos
 
 def main():
-    st.title("Amharic Spell Checker")
+    # st.title("Amharic Spell Checker")
 
     option = st.selectbox("Select Spell Checker Type", ["Basic Spell Checker", "Advanced Spell Checker"])
 
     text = st.text_area("Enter the text you want to spellcheck")
-
     if st.button("Check Spelling"):
         if option == "Basic Spell Checker":
             result = spell_checker.check(text)
