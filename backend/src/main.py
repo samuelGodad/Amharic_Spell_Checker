@@ -22,10 +22,10 @@ trigram_model_path = os.path.join(current_dir.parent, "models", "trigram_model.p
 pos = os.path.join(current_dir.parent, "models", "am_pos_model.pt")
 t1 = time.time()
 dictionary_model = Dictionary(dictionary_path)
-ngram_model = NgramModel.load(bigram_model_path)
+ngram = NgramModel.load(bigram_model_path)
 
-spell_checker = SpellChecker(dictionary_model, ngram_model)
-spell_checker_pos = SpellCheckerWithPOS(dictionary_model, ngram_model, pos)
+spell_checker = SpellChecker(dictionary_model, ngram)
+spell_checker_pos = SpellCheckerWithPOS(dictionary_model, ngram, pos)
 print(f"Models loaded successfully in {round(time.time() - t1, 3)} seconds")
 
 app = FastAPI()
