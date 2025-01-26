@@ -4,8 +4,6 @@ from flair.data import Sentence
 import os
 from pathlib import Path
 
-# models_path = "models/"
-# pos_model_path = models_path + 'am_pos_model.pt'
 current_dir = Path(__file__).parent
 models_path = os.path.normpath(os.path.join(current_dir.parent, "models"))
 pos_model_path = os.path.normpath(os.path.join(models_path, "am_pos_model.pt"))

@@ -8,4 +8,4 @@ def levenshtein_distance(str1: str, str2: str) -> int:
     return distance
 
 if __name__ == '__main__':
-    print(damerau_levenshtein_distance("kitten", "sitting"))
+    print(levenshtein_distance("kitten", "sitting"))
