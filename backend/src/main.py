@@ -1,8 +1,11 @@
+import sys
 from fastapi import FastAPI, HTTPException, Query
 import time
 import os
 from pathlib import Path
-from spell_checker import SpellChecker
+
+# Use absolute imports
+from backend.src.spell_checker import SpellChecker
 from spell_checker_pos import SpellCheckerWithPOS
 from dictionary import Dictionary
 from ngram import NgramModel
@@ -12,6 +15,7 @@ from pydantic import BaseModel, ConfigDict
 from fastapi.staticfiles import StaticFiles
 
 current_dir = Path(__file__).parent
+print("this is the current direcotry for render",current_dir)
 dictionary_path = os.path.join(current_dir.parent, "data", "amharic_dictionary_v1.txt")
 bigram_model_path = os.path.join(current_dir.parent, "models", "bigram_model.pkl")
 trigram_model_path = os.path.join(current_dir.parent, "models", "trigram_model.pkl")
@@ -36,7 +40,7 @@ app.add_middleware(
 )
 
 # Serve the frontend static files
-app.mount("/", StaticFiles(directory="../frontend/build", html=True), name="static")
+app.mount("/", StaticFiles(directory="../frontend/dist", html=True), name="static")
 
 class ErrorModel(BaseModel):
     word: str
@@ -50,14 +54,15 @@ class RangeModel(BaseModel):
     suggestions: List[str]
 
 class SpellChekeRequest(BaseModel):
-    text:str
-    use_pos:bool =True
+    text: str
+    use_pos: bool = True
 
 class SpellCheckResponse(BaseModel):
-    text:str
-    errors:List[ErrorModel]
-    ranges:List[RangeModel]
-    model_config =ConfigDict(arbitrary_types_allowed=True)
+    text: str
+    errors: List[ErrorModel]
+    ranges: List[RangeModel]
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
 class ReplaceWordRequest(BaseModel):
     text: str
     index: int
@@ -65,13 +70,14 @@ class ReplaceWordRequest(BaseModel):
 
 class ReplaceWordResponse(BaseModel):
     text: str
+
 @app.post("/api/check-spelling", response_model=SpellCheckResponse)
 async def check_spelling(request: SpellChekeRequest):
     try:
         if not request.text or request.text.isspace():
             return SpellCheckResponse(
                 text=request.text,
-                errors =[],
+                errors=[],
                 ranges=[]
             )
         # Use POS tagger if requested
@@ -80,31 +86,31 @@ async def check_spelling(request: SpellChekeRequest):
         result = checker.check(request.text)
         print(f"Checking result:{result}")
 
-        
         # Format response for React-Quill
         ranges = []
         for error in result["errors"]:
             if "index" not in error:
-                print(f"Warning:Missing index for error:{error}")
+                print(f"Warning: Missing index for error: {error}")
                 continue
-            
+
             ranges.append({
                 "index": error["index"][0],
                 "length": error["index"][1] - error["index"][0],
                 "word": error["word"],
                 "suggestions": error["suggestions"]
             })
-        
+
         return SpellCheckResponse(
             text=request.text,
             errors=result["errors"],
             ranges=ranges
         )
     except Exception as e:
-        print(f"Error in  checking spelling :{str(e)}")
+        print(f"Error in checking spelling: {str(e)}")
         import traceback
         print(traceback.format_exc())
         raise HTTPException(status_code=500, detail=str(e))
+
 @app.post("/api/replace-word", response_model=ReplaceWordResponse)
 async def replace_word(request: ReplaceWordRequest):
     try:
@@ -132,4 +138,4 @@ async def spellchecker(text: str = Query(..., title="Text to Spellcheck", descri
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=4000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
