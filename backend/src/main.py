@@ -6,7 +6,7 @@ from pathlib import Path
 
 # Use absolute imports
 from src.spell_checker import SpellChecker
-from src.spell_checker_pos import SpellCheckerWithPOS
+from spell_checker_pos import SpellCheckerWithPOS
 from src.dictionary import Dictionary
 from src.ngram import NgramModel
 from fastapi.middleware.cors import CORSMiddleware
