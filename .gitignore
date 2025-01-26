@@ -52,4 +52,4 @@ htmlcov/
 *.local
 # remove the streamlit_server.py file 
 backend/src/streamlit_server.py
-backend/data/get_data.py
+backend/data/gen_data.py
