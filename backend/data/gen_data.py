@@ -1,5 +1,6 @@
 import random
 from enum import Enum
+from pathlib import Path
 
 class HoheBetType(Enum):
     SIMPLE = 1
@@ -123,6 +124,23 @@ def generate_wrongly_spelled_words(*, dictionary, new_file):
                 dest_file.write(wrongly_spelled_word+"\n")
 
 
-# generate_wrongly_spelled_words(dictionary="amharic_dictionary.txt", new_file="amharic_incorrect_spelling.txt")
+# Update the file paths to be relative to the script's directory
+base_dir = Path(__file__).parent
+dictionary_path = base_dir / "small_amharic_dictionary.txt"  # Use the smaller dictionary file
 
-combine("amharic_correct_and_incorrect_data.txt", "amharic_dictionary.txt", "amharic_incorrect_spelling.txt")
+incorrect_spelling_path = base_dir / "amharic_incorrect_spelling.txt"
+combined_path = base_dir / "amharic_correct_and_incorrect_data.txt"
+
+generate_wrongly_spelled_words(dictionary=dictionary_path, new_file=incorrect_spelling_path)
+
+combine(combined_path, dictionary_path, incorrect_spelling_path)
+
+# Update the file paths to be relative to the script's directory
+base_dir = Path(__file__).parent
+dictionary_path = base_dir / "amharic_dictionary.txt"
+incorrect_spelling_path = base_dir / "amharic_incorrect_spelling.txt"
+combined_path = base_dir / "amharic_correct_and_incorrect_data.txt"
+
+generate_wrongly_spelled_words(dictionary=dictionary_path, new_file=incorrect_spelling_path)
+
+combine(combined_path, dictionary_path, incorrect_spelling_path)

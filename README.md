@@ -83,3 +83,73 @@ This simple amharic spell-checking solution designed specifically for the Amhari
   ├── package.json
   └── vite.config.js
 ```
+### 🔧 Setup
+
+#### Backend
+
+1. **Navigate to the backend directory**:
+   ```sh
+   cd backend
+   ```
+
+2. **Install the required dependencies**:
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+3. **Run the backend server**:
+   ```sh
+   uvicorn src.main:app --reload --port 8000
+   ```
+
+   The backend server will be running at `http://127.0.0.1:8000`.
+
+#### Frontend
+
+1. **Navigate to the frontend directory**:
+   ```sh
+   cd frontend
+   ```
+
+2. **Install the required dependencies**:
+   ```sh
+   npm install
+   ```
+
+3. **Run the frontend development server**:
+   ```sh
+   npm run dev
+   ```
+
+   The frontend server will be running at `http://127.0.0.1:8000`.
+
+### 🧪 Testing the Application
+
+1. **Ensure both the backend and frontend servers are running**.
+
+2. **Open your browser and navigate to the frontend URL**:
+   ```sh
+   http://127.0.0.1:8000
+   ```
+3. **Use the application**:
+   - Enter or paste Amharic text in the input field which contains both misspelled and correctly spelled Amharic words.
+   - The application will check the spelling and underline the misspelled words with a red line. The user can put the cursor on the misspelled word and right-click to display suggestions for corrections in a menu. You can then select the best match to correct the word, as shown in the figure.
+
+
+<!-- - figure  -->
+![Amharic spellchecker editor in action ](image-1.png)
+
+
+### 📊 Evaluating the Model
+
+1. **Navigate to the backend directory**:
+   ```sh
+   cd backend && src
+   ```
+
+2. **Run the evaluation script**:
+   ```sh
+   python evaluate_model.py
+   ```
+
+   This script will evaluate the model's performance and display the accuracy.
