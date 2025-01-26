@@ -8,7 +8,7 @@ from pathlib import Path
 from src.spell_checker import SpellChecker
 from src.spell_checker_pos import SpellCheckerWithPOS
 from src.dictionary import Dictionary
-from ngram import NgramModel
+from src.ngram import NgramModel
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Dict, Optional
 from pydantic import BaseModel, ConfigDict
