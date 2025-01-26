@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 
 # Use absolute imports
-from backend.src.spell_checker import SpellChecker
+from src.spell_checker import SpellChecker
 from spell_checker_pos import SpellCheckerWithPOS
 from dictionary import Dictionary
 from ngram import NgramModel
