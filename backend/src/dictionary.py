@@ -1,6 +1,6 @@
-from src.utils import read_lines
+from utils import read_lines
 from collections import defaultdict
-from src.normalizer import AmharicNormalizer
+from normalizer import AmharicNormalizer
 
 # TODO: Serialize the dictionary object to a file option
 

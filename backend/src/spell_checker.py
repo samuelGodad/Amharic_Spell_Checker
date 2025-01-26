@@ -1,13 +1,13 @@
 # Distance Calculation and Dictionary Look Up
-from src.edit_distance import levenshtein_distance
-from src.dictionary import Dictionary
+from edit_distance import levenshtein_distance
+from dictionary import Dictionary
 
 # Text Preprocessing
-from src.preprocessing import AmharicTextProcessor
-from src.tokenizer import AmharicSegmenter
+from preprocessing import AmharicTextProcessor
+from tokenizer import AmharicSegmenter
 
 # Context Analyzer
-from src.ngram import NgramModel
+from ngram import NgramModel
 
 class SpellChecker:
     def __init__(self, dictionary_model: Dictionary, ngram_model: NgramModel):

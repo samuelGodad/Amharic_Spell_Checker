@@ -5,10 +5,10 @@ import os
 from pathlib import Path
 
 # Use absolute imports
-from src.spell_checker import SpellChecker
-from src.spell_checker_pos import SpellCheckerWithPOS
-from src.dictionary import Dictionary
-from src.ngram import NgramModel
+from spell_checker import SpellChecker
+from spell_checker_pos import SpellCheckerWithPOS
+from dictionary import Dictionary
+from ngram import NgramModel
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Dict, Optional
 from pydantic import BaseModel, ConfigDict
@@ -22,6 +22,7 @@ trigram_model_path = os.path.join(current_dir.parent, "models", "trigram_model.p
 pos = os.path.join(current_dir.parent, "models", "am_pos_model.pt")
 t1 = time.time()
 dictionary_model = Dictionary(dictionary_path)
+print("the path to the bigram_model_path is ",bigram_model_path)
 ngram = NgramModel.load(bigram_model_path)
 
 spell_checker = SpellChecker(dictionary_model, ngram)

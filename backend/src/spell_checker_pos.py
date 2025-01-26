@@ -1,4 +1,4 @@
-from src.spell_checker import SpellChecker
+from spell_checker import SpellChecker
 from flair.models import SequenceTagger
 from flair.data import Sentence
 import os
