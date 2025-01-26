@@ -7,8 +7,9 @@ from spell_checker_pos import SpellCheckerWithPOS
 from dictionary import Dictionary
 from ngram import NgramModel
 from fastapi.middleware.cors import CORSMiddleware
-from typing import List ,Dict,Optional
-from pydantic import BaseModel,ConfigDict
+from typing import List, Dict, Optional
+from pydantic import BaseModel, ConfigDict
+from fastapi.staticfiles import StaticFiles
 
 current_dir = Path(__file__).parent
 dictionary_path = os.path.join(current_dir.parent, "data", "amharic_dictionary_v1.txt")
@@ -33,6 +34,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Serve the frontend static files
+app.mount("/", StaticFiles(directory="../frontend/build", html=True), name="static")
+
 class ErrorModel(BaseModel):
     word: str
     suggestions: List[str]
@@ -124,7 +129,7 @@ async def spellchecker(text: str = Query(..., title="Text to Spellcheck", descri
         return {"success": True, "result": result}
     except Exception as e:
         return HTTPException(status_code=500, detail=str(e))
-    
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=4000)

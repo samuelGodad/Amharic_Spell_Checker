@@ -156,27 +156,27 @@ const AmharicEditor = () => {
     setContextMenu(null);
   };
 
-  const testSpellChecker = async () => {
-    try {
-      const testText = "ትማረ"; 
-      console.log("Testing with text:", testText);
+  // const testSpellChecker = async () => {
+  //   try {
+  //     const testText = "ትማረ"; 
+  //     console.log("Testing with text:", testText);
 
-      const response = await fetch("http://localhost:8000/api/check-spelling", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: testText, use_pos: true }),
-      });
-      if (!response.ok){
-        const errorText =await response.text();
-        throw new Error (`HTTP error ! status :${response.status},message:${errorText}`)
-      }
+  //     const response = await fetch("http://localhost:8000/api/check-spelling", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ text: testText, use_pos: true }),
+  //     });
+  //     if (!response.ok){
+  //       const errorText =await response.text();
+  //       throw new Error (`HTTP error ! status :${response.status},message:${errorText}`)
+  //     }
 
-      const data = await response.json();
-      console.log("Test response:", data);
-    } catch (error) {
-      console.error("Test error:", error);
-    }
-  };
+  //     const data = await response.json();
+  //     console.log("Test response:", data);
+  //   } catch (error) {
+  //     console.error("Test error:", error);
+  //   }
+  // };
 
   return (
     <Paper elevation={3} sx={{ p: 2, width: "100%", margin: "0 auto" }}>
