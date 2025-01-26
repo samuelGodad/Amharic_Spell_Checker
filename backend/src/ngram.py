@@ -1,5 +1,5 @@
-from tokenizer import AmharicSegmenter
-from preprocessing import AmharicTextProcessor
+from src.tokenizer import AmharicSegmenter
+from src.preprocessing import AmharicTextProcessor
 from nltk.util import ngrams
 from collections import defaultdict
 import pickle

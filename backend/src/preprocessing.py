@@ -1,5 +1,5 @@
 import re
-from normalizer import AmharicNormalizer
+from src.normalizer import AmharicNormalizer
 
 class AmharicTextProcessor:
     def __init__(self):
