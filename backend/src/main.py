@@ -40,8 +40,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Serve the frontend static files
-app.mount("/", StaticFiles(directory="../frontend/dist", html=True), name="static")
+# # Serve the frontend static files
+# app.mount("/", StaticFiles(directory="../frontend/dist", html=True), name="static")
 
 class ErrorModel(BaseModel):
     word: str
