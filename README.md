@@ -137,7 +137,7 @@ This simple amharic spell-checking solution designed specifically for the Amhari
 
 
 <!-- - figure  -->
-![Amharic spellchecker editor in action ](image-1.png)
+![Amharic spellchecker editor in action ](updated image.png)
 
 
 ### 📊 Evaluating the Model
